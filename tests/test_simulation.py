@@ -7,8 +7,11 @@ from experiments.simulation import (
 )
 
 from agents.random_agent import RandomAgent
-
+from agents.maximum_probability_agent import MaximumProbabilityAgent
 from game.configurations import generate_configurations
+from agents.maximum_information_gain_agent import (
+    MaximumInformationGainAgent
+)
 
 
 class TestSimulation(unittest.TestCase):
@@ -157,6 +160,160 @@ class TestSimulation(unittest.TestCase):
             results_2["RandomAgent"]
         )
 
+    
+    def test_experiment_with_multiple_agents(self):
+
+        results = run_experiment(
+            n=3,
+            fleet_lengths=[2],
+            agent_classes=[
+                RandomAgent,
+                MaximumProbabilityAgent
+            ],
+            num_games=5,
+            seed=42
+        )
+
+        self.assertEqual(len(results["RandomAgent"]), 5)
+
+        self.assertEqual(
+            len(results["MaximumProbabilityAgent"]),
+            5
+        )
+
+        for agent_name, agent_results in results.items():
+
+            if agent_name == "_metadata":
+                continue
+
+            for game in agent_results:
+                self.assertTrue(game["won"])
+
+        
+        
+    def test_fleets_independent_of_agent_list(self):
+
+        agents_a = [
+            RandomAgent,
+            MaximumProbabilityAgent
+        ]
+
+        agents_b = [
+            RandomAgent,
+            MaximumProbabilityAgent,
+            MaximumInformationGainAgent
+        ]
+
+        results_a = run_experiment(
+            n=3,
+            fleet_lengths=[2],
+            agent_classes=agents_a,
+            num_games=10,
+            seed=42
+        )
+
+        results_b = run_experiment(
+            n=3,
+            fleet_lengths=[2],
+            agent_classes=agents_b,
+            num_games=10,
+            seed=42
+        )
+
+        for agent_class in agents_a:
+
+            name = agent_class.__name__
+
+            configurations_a = [
+                result["configuration"]
+                for result in results_a[name]
+            ]
+
+            configurations_b = [
+                result["configuration"]
+                for result in results_b[name]
+            ]
+
+            self.assertEqual(
+                configurations_a,
+                configurations_b
+            )
+
+
+    def test_agent_results_independent_of_order(self):
+
+        agents_a = [
+            RandomAgent,
+            MaximumProbabilityAgent
+        ]
+
+        agents_b = [
+            MaximumProbabilityAgent,
+            RandomAgent
+        ]
+
+        results_a = run_experiment(
+            n=3,
+            fleet_lengths=[2],
+            agent_classes=agents_a,
+            num_games=10,
+            seed=42
+        )
+
+        results_b = run_experiment(
+            n=3,
+            fleet_lengths=[2],
+            agent_classes=agents_b,
+            num_games=10,
+            seed=42
+        )
+
+        for agent_class in agents_a:
+
+            name = agent_class.__name__
+
+            shots_a = [
+                result["shots"]
+                for result in results_a[name]
+            ]
+
+            shots_b = [
+                result["shots"]
+                for result in results_b[name]
+            ]
+
+            self.assertEqual(shots_a, shots_b)
+
+
+    def test_agents_share_same_fleet_per_game(self):
+
+        agents = [
+            RandomAgent,
+            MaximumProbabilityAgent,
+            MaximumInformationGainAgent
+        ]
+
+        results = run_experiment(
+            n=3,
+            fleet_lengths=[2],
+            agent_classes=agents,
+            num_games=10,
+            seed=42
+        )
+
+        for game_id in range(10):
+
+            configurations = [
+                results[agent.__name__][game_id]["configuration"]
+                for agent in agents
+            ]
+
+            self.assertTrue(
+                all(
+                    configuration == configurations[0]
+                    for configuration in configurations
+                )
+            )
 
 
 if __name__ == "__main__":

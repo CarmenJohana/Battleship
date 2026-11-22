@@ -3,6 +3,9 @@ from .base_agent import BaseAgent
 
 class RandomAgent(BaseAgent):
 
+    def __init__(self, n, fleet_lengths=None, rng=None):
+        super().__init__(n, rng)
+
     def choose_shot(self):
 
         available_cells = self.get_available_cells()
@@ -11,4 +14,5 @@ class RandomAgent(BaseAgent):
             raise RuntimeError("No available cells left.")
 
         return self.rng.choice(available_cells)
+
 
