@@ -57,3 +57,20 @@ class Board:
             for c in range(self.n)
             if self.shots[r][c] == CellState.UNKNOWN
         ]
+        
+    def __str__(self):
+
+        symbols = {
+            CellState.UNKNOWN: "?",
+            CellState.MISS: "O",
+            CellState.HIT: "X"
+        }
+
+        rows = []
+
+        for row in self.shots:
+            rows.append(
+                " ".join(symbols[cell] for cell in row)
+            )
+
+        return "\n".join(rows)
