@@ -59,7 +59,7 @@ Battleship/
 └── main.py
 
 
-Módulos y descripciones
+# Módulos y descripciones
 - ship.py:	Representación de un barco, sus posiciones y estado de destrucción.
 - fleet.py:	Administración de la flota y sus barcos.
 - board.py:	Representación del tablero y registro de disparos.
@@ -68,6 +68,7 @@ Módulos y descripciones
 - game_engine.py:	Administración de las reglas y ejecución de los disparos.
 - runner.py:	Ejecución de una partida entre un agente y una flota oculta.
 - fleet_generator.py:	Generación de flotas para los experimentos.
+
 
 
 
