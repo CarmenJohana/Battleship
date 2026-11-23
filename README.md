@@ -187,6 +187,27 @@ MaximumInformationGainAgent - 16,75 - 5,81
 
 El resultado muestra que Maximum Probability fue el mejor en ese escenario.
 
+También implementamos dos herramientas de diagnóstico:
+
+- benchmark.py: mide el tiempo de generación de configuraciones y de ejecución de los agentes.
+
+- profile_inference.py: identifica las funciones que consumen más tiempo.
+
+Para tablero 5×5 y flota [4, 3, 2], obtuvimos:
+
+Agente - Tiempo por partida
+
+RandomAgent - 0,0004 s
+
+MaximumProbabilityAgent	- 0,5211 s
+
+MaximumInformationGainAgent	- 1,3166 s
+
+El profiler identificó que filter_compatible_configurations() y, especialmente, is_compatible() consumen gran parte del tiempo de inferencia.
+
+Sin embargo, como hemos acordado, no necesitamos optimizar todavía. La prioridad es evaluar las estrategias.
+
+
 
 
 
