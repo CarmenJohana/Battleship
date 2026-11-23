@@ -1,6 +1,7 @@
 
 
 Battleship/
+
 │
 
 ├── game/
@@ -67,5 +68,6 @@ Módulos y descripciones
 - game_engine.py:	Administración de las reglas y ejecución de los disparos.
 - runner.py:	Ejecución de una partida entre un agente y una flota oculta.
 - fleet_generator.py:	Generación de flotas para los experimentos.
+
 
 
