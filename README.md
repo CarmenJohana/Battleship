@@ -161,9 +161,10 @@ Actualmente tenemos:
 El intervalo de confianza actual utiliza la aproximación normal:
 
 
-\[
+$$
 \bar d \pm 1.96\frac{s_d}{\sqrt n}
-\]
+$$
+
 
 
 
