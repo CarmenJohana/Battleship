@@ -110,13 +110,13 @@ Por tanto, no estamos entrenando modelos de aprendizaje automático: estamos rea
 Aquí se pueden ejecutar cientos o miles de partidas automáticamente. La función central es:
 
 
-run_experiment(
-    n,
-    fleet_lengths,
-    agent_classes,
-    num_games,
-    seed=None
-)
+    run_experiment(
+        n,
+        fleet_lengths,
+        agent_classes,
+        num_games,
+        seed=None
+    )
 
 Algunas propiedades de esta función son las siguientes:
 
@@ -126,6 +126,46 @@ Algunas propiedades de esta función son las siguientes:
 4. Las semillas se derivan de manera determinista.
 5. El orden de los agentes no altera sus resultados.
 6. Podemos repetir experimentos con una semilla conocida.
+
+
+También guardamos metadatos experimentales, incluyendo la semilla, el tablero, la flota y el número de partidas.
+
+# Evaluación estadística (experiments/evaluation.py)
+
+Aquí hay dos funciones principales:
+
+    evaluate_results(results)
+
+Calcula estadísticas descriptivas para cada agente.
+
+    compare_agents_paired(results, agent_a, agent_b)
+
+Compara dos agentes utilizando los resultados de las mismas partidas.
+
+Actualmente tenemos:
+
+
+## Métricas implementadas
+
+- Media de disparos
+- Mediana
+- Varianza
+- Desviación estándar
+- Mínima y máximo
+- Victorias y derrotas pareadas
+- Empates
+- Tasas de victoria
+- Error estándar
+- Intervalo de confianza aproximado del 95%
+
+El intervalo de confianza actual utiliza la aproximación normal:
+
+
+\[
+\bar d \pm 1.96\frac{s_d}{\sqrt n}
+\]
+
+
 
 
 
