@@ -69,6 +69,33 @@ Battleship/
 - runner.py:	Ejecución de una partida entre un agente y una flota oculta.
 - fleet_generator.py:	Generación de flotas para los experimentos.
 
+# Agentes
+
+## RandomAgent
+
+Selecciona aleatoriamente una casilla que todavía no ha sido disparada.
+
+No necesita conocer la flota ni realizar inferencia.
+
+
+## MaximumProbabilityAgent
+
+Mantiene el conjunto de configuraciones compatibles con las observaciones y calcula la probabilidad marginal de que cada casilla esté ocupada.
+
+Selecciona la casilla con mayor probabilidad de contener un segmento de barco.
+
+## MaximumInformationGainAgent
+
+Evalúa la información esperada que proporcionaría disparar en cada casilla.
+
+Selecciona aquella que maximiza la información mutua entre la configuración oculta y el resultado del disparo.
+
+
+
+
+
+
+
 
 
 
