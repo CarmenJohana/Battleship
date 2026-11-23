@@ -185,6 +185,8 @@ MaximumProbabilityAgent - 11,46 - 2,63
 
 MaximumInformationGainAgent - 16,75 - 5,81
 
+El resultado muestra que Maximum Probability fue el mejor en ese escenario.
+
 
 
 
