@@ -166,6 +166,16 @@ $$
 $$
 
 
+Donde $d_i$ representa la diferencia de disparos entre dos agentes en la partida $i$.
+
+Todavía podemos enriquecer el análisis con pruebas estadísticas y tamaños del efecto.
+
+# Resultados experimentales que ya se tienen
+
+## Partidas: 1000
+## Tablero: 5x5
+## Flota [3,2]
+## Semilla: 42
 
 
 
