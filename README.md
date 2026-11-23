@@ -105,6 +105,30 @@ Un aspecto teórico interesante es que nuestros agentes probabilísticos utiliza
 
 Por tanto, no estamos entrenando modelos de aprendizaje automático: estamos realizando inferencia exacta sobre un espacio finito de configuraciones.
 
+# Simulación experimentatl (experiments/simulation.py)
+
+Aquí se pueden ejecutar cientos o miles de partidas automáticamente. La función central es:
+
+
+run_experiment(
+    n,
+    fleet_lengths,
+    agent_classes,
+    num_games,
+    seed=None
+)
+
+Algunas propiedades de esta función son las siguientes:
+
+1. Cada partida utiliza una configuración oculta.
+2. Todos los agentes enfrentan la misma configuración en esa partida.
+3. Cada agente tiene su propio generaor aleatorio.
+4. Las semillas se derivan de manera determinista.
+5. El orden de los agentes no altera sus resultados.
+6. Podemos repetir experimentos con una semilla conocida.
+
+
+
 
 
 
