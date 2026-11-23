@@ -178,9 +178,13 @@ Todavía podemos enriquecer el análisis con pruebas estadísticas y tamaños de
 - Semilla: 42
 
 Agente - Media de disparos - Desv. estándar
+
 RandomAgent - 21,78 - 3,12
+
 MaximumProbabilityAgent - 11,46 - 2,63
+
 MaximumInformationGainAgent - 16,75 - 5,81
+
 
 
 
