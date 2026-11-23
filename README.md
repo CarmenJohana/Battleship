@@ -1,4 +1,4 @@
-
+# Estructura de carpetas
 
 Battleship/
 
@@ -91,7 +91,19 @@ Evalúa la información esperada que proporcionaría disparar en cada casilla.
 Selecciona aquella que maximiza la información mutua entre la configuración oculta y el resultado del disparo.
 
 
+---
 
+En inference.py tenemos las funciones compartidas:
+
+- is_compatible()
+- filter_compatible_configurations()
+- calculate_probability_matrix()
+- calculate_information_gain()
+- print_probability_matrix()
+
+Un aspecto teórico interesante es que nuestros agentes probabilísticos utilizan un posterior uniforme sobre las configuraciones que siguen siendo compatibles con las observaciones.
+
+Por tanto, no estamos entrenando modelos de aprendizaje automático: estamos realizando inferencia exacta sobre un espacio finito de configuraciones.
 
 
 
